@@ -86,6 +86,7 @@ pub struct ExportArguments<'a> {
     pub page_range: Option<&'a String>,
     pub embed_svg_images: bool,
     pub enable_plugins: bool,
+    pub raw: Option<&'a String>,
 }
 
 impl<'a> ExportArguments<'a> {
@@ -95,6 +96,10 @@ impl<'a> ExportArguments<'a> {
 
         if self.recursive {
             arguments.push("--recursive");
+        }
+
+        if let Some(raw) = self.raw {
+            arguments.push(raw);
         }
 
         if let Some(output) = self.output {
