@@ -107,6 +107,10 @@ pub fn args() -> Vec<Arg> {
             .short('e')
             .long("embed-diagram")
             .action(ArgAction::SetTrue),
+        Arg::new("raw command")
+            .help("Raw command to push")
+            .short('r')
+            .long("raw"),
     ]
 }
 
@@ -149,5 +153,6 @@ pub fn exec(args: &ArgMatches) -> Result<()> {
             .get_one::<bool>("drawio-cli-pdf-png-svg-embed-diagram")
             .copied()
             .unwrap(),
+        raw: args.get_one("application").unwrap(),
     })
 }
