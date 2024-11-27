@@ -32,6 +32,7 @@ pub struct ExporterOptions<'a> {
     pub uncompressed: bool,
     pub embed_svg_images: bool,
     pub embed_diagram: bool,
+    pub raw: Option<&'a String>,
 }
 
 pub fn exporter(options: ExporterOptions<'_>) -> Result<()> {
@@ -151,6 +152,7 @@ pub fn exporter(options: ExporterOptions<'_>) -> Result<()> {
                 page_range: None,
                 embed_svg_images: options.embed_svg_images,
                 enable_plugins: options.enable_plugins,
+                raw: options.raw,
             })?;
 
             if options.format.eq("adoc") || options.format.eq("md") {
